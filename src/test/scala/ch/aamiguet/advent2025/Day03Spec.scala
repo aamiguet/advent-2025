@@ -1,7 +1,5 @@
 package ch.aamiguet.advent2025
 
-package ch.aamiguet.advent2025
-
 import org.scalatest.*
 import flatspec.*
 import matchers.*

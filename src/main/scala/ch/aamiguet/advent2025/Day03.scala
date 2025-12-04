@@ -2,8 +2,6 @@ package ch.aamiguet.advent2025
 
 class Day03 extends Day:
 
-  type Rank = (joltage: Int, batteries: String)
-
   private def parse(input: String): List[Vector[Int]] =
     input.split("\n").toList.map(_.map(_.asDigit).toVector)
 
