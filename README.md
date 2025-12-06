@@ -5,3 +5,4 @@
 * Day 3: it feels brute forcish
 * Day 4: Arrays are mutable 😉
 * Day 5: in how many ways can ranges overlap?
+* Day 6: auto trim trailling space betrayed me!
