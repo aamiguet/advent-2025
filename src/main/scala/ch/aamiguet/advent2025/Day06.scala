@@ -16,7 +16,7 @@ class Day06 extends Day:
         Problem(ps.last.head, ps.dropRight(1).map(_.toLong).toList)
       .toList
 
-  private def parseAsCephalolopMath(input: String): List[Problem] =
+  private def parseAsCephalopodMath(input: String): List[Problem] =
     val lines = input.split("\n")
     val opChunks = "(\\*|\\+)\\s+".r.findAllIn(lines.last).toList
     opChunks
@@ -41,7 +41,7 @@ class Day06 extends Day:
     val problems = parse(input)
     problems.map(_.result).sum.toString
   override def part2(input: String): String =
-    val problems = parseAsCephalolopMath(input)
+    val problems = parseAsCephalopodMath(input)
     problems.map(_.result).sum.toString
 
 object Day06:
