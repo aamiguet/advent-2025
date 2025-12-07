@@ -2,12 +2,12 @@ package ch.aamiguet.advent2025
 
 class Day07 extends Day:
 
-  type Manifold = Array[Array[Char]]
+  type Manifold = Array[String]
 
   private def parse(input: String): Manifold =
-    input.split("\n").map(_.toArray)
+    input.split("\n")
 
-  private def findSplitIndices(row: Array[Char], beamIndices: Set[Int]): List[Int] =
+  private def findSplitIndices(row: String, beamIndices: Set[Int]): List[Int] =
     row
       .zipWithIndex
       .filter: (location, i) =>
@@ -35,7 +35,7 @@ class Day07 extends Day:
       .tail
       .foldLeft(beamTimelineSource): (beamTimelines, row) =>
         val splitIndices = findSplitIndices(row, beamTimelines.keySet)
-        val splittedTimelines =
+        val splitTimelines =
           splitIndices
             .flatMap: i =>
               val pastTimelines = beamTimelines(i)
@@ -45,7 +45,7 @@ class Day07 extends Day:
             .mapValues(_.sum)
             .toMap
         val updatedBeamTimelines =
-          splittedTimelines
+          splitTimelines
             .foldLeft(beamTimelines): (bm, s) =>
               bm.updatedWith(s._1):
                 case None => Some(s._2)
