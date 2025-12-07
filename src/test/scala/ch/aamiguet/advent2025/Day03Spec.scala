@@ -15,7 +15,7 @@ class Day03Spec extends AnyFlatSpec with should.Matchers:
       |818181911112111""".stripMargin
 
   "Day 3" should "add up the best combinations of batteries" in
-    d.part1(input).shouldBe("357")
+    d.part1(input).shouldBe(357)
 
   "Day 3" should "add up the best combinations of 12 batteries" in
-    d.part2(input).shouldBe("3121910778619")
+    d.part2(input).shouldBe(3121910778619L)

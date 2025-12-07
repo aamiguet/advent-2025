@@ -22,11 +22,11 @@ class Day03 extends Day:
       val pos = batteries.indexOf(max)
       bruteForceN(batteries.drop(pos + 1), n - 1, selected :+ max)
 
-  override def part1(input: String): String =
-    parse(input).map(bruteForce).sum.toString
+  override def part1(input: String): Long =
+    parse(input).map(bruteForce).sum
 
-  override def part2(input: String): String =
-    parse(input).map(bs => bruteForceN(bs, 12)).sum.toString
+  override def part2(input: String): Long =
+    parse(input).map(bs => bruteForceN(bs, 12)).sum
 
 object Day03:
   val day = Day03()

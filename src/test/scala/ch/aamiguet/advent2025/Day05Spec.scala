@@ -22,7 +22,7 @@ class Day05Spec extends AnyFlatSpec with should.Matchers:
       |32""".stripMargin
 
   "Day 5" should "find all the ingredients" in
-    d.part1(input).shouldBe("3")
+    d.part1(input).shouldBe(3)
 
   "Day 5" should "find all the fresh ids" in
-    d.part2(input).shouldBe("14")
+    d.part2(input).shouldBe(14)

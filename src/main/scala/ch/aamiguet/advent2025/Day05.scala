@@ -22,9 +22,9 @@ class Day05 extends Day:
       ids.split("\n").toList.map(_.toLong),
     )
 
-  override def part1(input: String): String =
+  override def part1(input: String): Long =
     val (ranges, ids) = parse(input)
-    ids.filter(id => ranges.exists(_.contains(id))).size.toString
+    ids.filter(id => ranges.exists(_.contains(id))).size
 
   private def merge(range: Range, merged: List[Range]): List[Range] =
     // bigger ranges are sorted before smaller one so it's already merged
@@ -40,12 +40,12 @@ class Day05 extends Day:
     else
       range :: merged
 
-  override def part2(input: String): String =
+  override def part2(input: String): Long =
     val (ranges, _) = parse(input)
     val srs = ranges.sorted
     val uniqueRanges = srs.tail.foldLeft(List(srs.head)): (acc, range) =>
       merge(range, acc)
-    uniqueRanges.map(r => (r.to - r.from) + 1).sum.toString
+    uniqueRanges.map(r => (r.to - r.from) + 1).sum
 
 object Day05:
   val day = Day05()

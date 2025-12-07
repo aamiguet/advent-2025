@@ -27,7 +27,7 @@ class Day07Spec extends AnyFlatSpec with should.Matchers:
        |...............""".stripMargin
 
   "Day 7" should "count all the splits" in
-    d.part1(input).shouldBe("21")
+    d.part1(input).shouldBe(21)
 
   "Day 7" should "count all the possible timelines" in
-    d.part2(input).shouldBe("40")
+    d.part2(input).shouldBe(40)

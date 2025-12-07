@@ -15,7 +15,7 @@ class Day06Spec extends AnyFlatSpec with should.Matchers:
       |*   +   *   +  """.stripMargin
 
   "Day 6" should "compute the grand total" in
-    d.part1(input).shouldBe("4277556")
+    d.part1(input).shouldBe(4277556)
 
   "Day 6" should "compute the grand total in cephalopod math" in
-    d.part2(input).shouldBe("3263827")
+    d.part2(input).shouldBe(3263827)

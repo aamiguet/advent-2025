@@ -39,13 +39,13 @@ class Day02 extends Day:
     input.split(",").toList.map:
       case s"$lower-$upper" => IdRange(lower, upper)
 
-  override def part1(input: String): String =
+  override def part1(input: String): Long =
     val idRanges = parse(input)
-    idRanges.flatMap(_.invalidIds).sum.toString
+    idRanges.flatMap(_.invalidIds).sum
 
-  override def part2(input: String): String =
+  override def part2(input: String): Long =
     val idRanges = parse(input)
-    idRanges.flatMap(_.allInvalidIds).sum.toString
+    idRanges.flatMap(_.allInvalidIds).sum
 
 object Day02:
   val day = Day02()

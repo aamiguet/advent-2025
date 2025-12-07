@@ -37,12 +37,12 @@ class Day06 extends Day:
           (Problem(opChunk.head, numbers) :: problems, index + opChunk.size)
       ._1
 
-  override def part1(input: String): String =
+  override def part1(input: String): Long =
     val problems = parse(input)
-    problems.map(_.result).sum.toString
-  override def part2(input: String): String =
+    problems.map(_.result).sum
+  override def part2(input: String): Long =
     val problems = parseAsCephalopodMath(input)
-    problems.map(_.result).sum.toString
+    problems.map(_.result).sum
 
 object Day06:
   val day = Day06()

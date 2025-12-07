@@ -12,10 +12,10 @@ class Day01 extends Day:
         val p = (acc.head + sign * rotation.tail.toInt) % 100
         p :: acc
 
-  override def part1(input: String): String =
-    positions(input).filter(_ == 0).size.toString
+  override def part1(input: String): Long =
+    positions(input).filter(_ == 0).size
 
-  override def part2(input: String): String =
+  override def part2(input: String): Long =
     val rotations = input.split("\n").toList
     val (_, count) = rotations.foldLeft((50, 0)):
       case ((pos, c), rotation) =>
@@ -35,7 +35,7 @@ class Day01 extends Day:
               ((newPos + 100) % 100, c + (if pos > 0 then 1 else 0) + extra)
             else
               (newPos, c + extra)
-    count.toString
+    count
   end part2
 
 object Day01:

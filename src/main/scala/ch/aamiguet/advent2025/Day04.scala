@@ -35,12 +35,12 @@ class Day04 extends Day:
         loop(acc + ars.size)
     loop(0)
 
-  override def part1(input: String): String =
+  override def part1(input: String): Long =
     val grid = parse(input)
-    accessibleRolls(grid).size.toString
-  override def part2(input: String): String =
+    accessibleRolls(grid).size
+  override def part2(input: String): Long =
     val grid = parse(input)
-    removeRolls(grid).toString
+    removeRolls(grid)
 
 object Day04:
   val day = Day04()

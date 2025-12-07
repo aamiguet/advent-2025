@@ -7,57 +7,53 @@ class Day07 extends Day:
   private def parse(input: String): Manifold =
     input.split("\n").map(_.toArray)
 
-  override def part1(input: String): String =
+  private def findSplitIndices(row: Array[Char], beamIndices: Set[Int]): List[Int] =
+    row
+      .zipWithIndex
+      .filter: (location, i) =>
+        beamIndices(i) && location == '^'
+      .map(_._2)
+      .toList
+
+  override def part1(input: String): Long =
     val manifold = parse(input)
     val beamSource = Set(manifold.head.indexOf('S'))
     manifold
       .tail
       .foldLeft((beamSource, 0)):
         case ((beamIndices, splitCount), row) =>
-          val splits =
-            row
-              .zipWithIndex
-              .filter: (location, i) =>
-                beamIndices(i) && location == '^'
+          val splitIndices = findSplitIndices(row, beamIndices)
           val updatedBeamIndices =
-            beamIndices ++ splits.flatMap((_, i) => Set(i - 1, i + 1)) -- splits.map(_._2)
-          (updatedBeamIndices, splitCount + splits.size)
+            beamIndices ++ splitIndices.flatMap(i => Set(i - 1, i + 1)) -- splitIndices
+          (updatedBeamIndices, splitCount + splitIndices.size)
       ._2
-      .toString
 
-  override def part2(input: String): String =
+  override def part2(input: String): Long =
     val manifold = parse(input)
-    val beamSource = Map(manifold.head.indexOf('S') -> 1L)
+    val beamTimelineSource = Map(manifold.head.indexOf('S') -> 1L)
     manifold
       .tail
-      .foldLeft((beamSource, 0)):
-        case ((beamMap, splitCount), row) =>
-          val splits =
-            row
-              .zipWithIndex
-              .filter: (location, i) =>
-                beamMap.keySet(i) && location == '^'
-          val splittedTimelines =
-            splits
-              .flatMap: (_, i) =>
-                val pastTimelines = beamMap(i)
-                List((i + 1) -> pastTimelines, (i - 1) -> pastTimelines)
-              .groupMap(_._1)(_._2)
-              .view
-              .mapValues(_.sum)
-              .toMap
-          val updatedBeamMap =
-            splittedTimelines
-              .foldLeft(beamMap): (bm, s) =>
-                bm.updatedWith(s._1):
-                  case None => Some(s._2)
-                  case Some(n) => Some(n + s._2)
-              .removedAll(splits.map(_._2))
-          (updatedBeamMap, splitCount + splits.size)
-      ._1
+      .foldLeft(beamTimelineSource): (beamTimelines, row) =>
+        val splitIndices = findSplitIndices(row, beamTimelines.keySet)
+        val splittedTimelines =
+          splitIndices
+            .flatMap: i =>
+              val pastTimelines = beamTimelines(i)
+              List((i + 1) -> pastTimelines, (i - 1) -> pastTimelines)
+            .groupMap(_._1)(_._2)
+            .view
+            .mapValues(_.sum)
+            .toMap
+        val updatedBeamTimelines =
+          splittedTimelines
+            .foldLeft(beamTimelines): (bm, s) =>
+              bm.updatedWith(s._1):
+                case None => Some(s._2)
+                case Some(n) => Some(n + s._2)
+            .removedAll(splitIndices)
+        updatedBeamTimelines
       .values
       .sum
-      .toString
 
 object Day07:
   val day = Day07()

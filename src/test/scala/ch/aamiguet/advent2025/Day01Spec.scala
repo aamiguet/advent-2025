@@ -21,9 +21,9 @@ class Day01Spec extends AnyFlatSpec with should.Matchers:
       |L82""".stripMargin
 
   "Day 1" should "compute the number of times the dial points at 0" in {
-    d.part1(input).shouldBe("3")
+    d.part1(input).shouldBe(3)
   }
 
   "Day 1" should "compute the number of times the dial points at 0 at any time in a rotation" in {
-    d.part2(input).shouldBe("6")
+    d.part2(input).shouldBe(6)
   }
